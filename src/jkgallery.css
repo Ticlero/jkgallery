@@ -1,0 +1,93 @@
+.JKGallery {
+    height: 100%;
+  }
+  ._route{
+    height: 100%;
+  }
+  .nav{
+    position:fixed;
+  }
+  
+  ._header-div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  ._header-div ._header-nav{
+    align-self: center;
+  }
+  ._header-div ._header-nav ul{
+    all:unset;
+    display: flex;
+    list-style-type: none;
+  }
+  
+  ._header-div ._header-nav ul li{
+    display: block;
+    padding: 10px 10px;
+    width:100px;
+  }
+  
+  ._header-div ._header-nav ul li button{
+    all:unset;
+    cursor: pointer;
+    background-color: white;
+    padding: 5px 10px;
+    width:80px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow:0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    color:rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    
+  }
+  
+  ._header-div ._header-nav ul li button:active{
+    transform: scale(0.95);
+  }
+  
+  .login-form{
+    all:unset;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  
+  .login-form .id-box{
+    margin: 5px 5px;
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .login-form .pwd-box{
+    margin: 5px 5px;
+    width: 21%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .login-form button{
+    all:unset;
+    cursor: pointer;
+    background-color: white;
+    padding: 5px 10px;
+    width:80px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow:0 4px 6px rgba(50,50,93,0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    color:rgba(0, 0, 0, 0.7);
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+  }
+
+  .login-form button:active{
+    transform: scale(0.95);
+  }

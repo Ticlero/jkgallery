@@ -1,0 +1,28 @@
+.my-home{
+    margin-top:5%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .my-home .h-read-me{
+    
+    width:48%;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    height: 30%;
+  }
+  .my-home .h-about-us{
+    width:48%;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    height: 30%;
+  }
+  .my-home .h-my-image{
+    margin-top: 2%;
+    width:100%;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    height: 100%;
+  }
