@@ -14,7 +14,7 @@ const UserInfo = () => {
 
 const mappingUserInfo = (data) =>{
     const user = data.allUser.map((userdata) =>{
-        return <UserInfoFrom _id={userdata._id} name={userdata.name} age={userdata.age} gender={userdata.gender} key={userdata._id}/>
+        return <UserInfoFrom _userID={userdata._userID} name={userdata.name} age={userdata.age} gender={userdata.gender} key={userdata._userID}/>
     })
     return user;
 }

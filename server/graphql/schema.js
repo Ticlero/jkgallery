@@ -5,21 +5,25 @@ const typeDefs =`
     type Query{
         hello: String!,
         allUser: [User],
-        getByIdUser: User
+        getByIdUser(_userID: String!): User,
     }
 
     type User{
-        _id: ID!,
+        _userID: String!,
+        _userPwd: String!,
         name: String!,
         age: Int!,
         gender: String!,
     }
 
     input userInput{
+        _userID: String!,
+        _userPwd: String!,
         name: String!,
         age: Int!,
-        gender: String!
+        gender: String!,
     }
+
     type Mutation{
         addUser(input: userInput): User
     }

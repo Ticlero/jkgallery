@@ -2,11 +2,21 @@ import User from './models/user';
 
 export const resolvers = {
     Query:{
-        hello: () => "Hello JKGallery's GraphQL World",
-        allUser: async () => await User.find(),
+        hello: () =>{
+            return "Hello My Cookie Test Server!";
+        },
+        allUser: async () => {
+            return await User.find();
+        },
+        getByIdUser: async (_,{_userID}) =>{
+            return await User.findOne({_userID:_userID});
+        }
     },
+
     Mutation:{
-        addUser: async (root, {input}) => User.create(input)
+        addUser: async (_,{input}) =>{
+            return await User.create(input);
+        }
     }
     
 }
