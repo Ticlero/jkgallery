@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 
-const mongooseSeesion = require('mongoose-session')(mongoose);
+const MongoStroe = require('connect-mongo')(session);
 const app = express();
 const port = 3000;
 const dbName = 'userinfoTable';
@@ -22,17 +22,23 @@ const path = require('path'); //Node.js 환경에서 디렉토리 주소를 다�
 // });
 
 mongoose.Promise = global.Promise;// db 연결 (비동기 처리)
-mongoose.connect(MONGODB_URL, {useNewUrlParser: true, //useNewUrlParser, useUnifiedTopology 찾아보기
-    useUnifiedTopology: true });
+mongoose.connect(MONGODB_URL //useNewUrlParser, useUnifiedTopology 찾아보기
+    );
 
 app.use(cookieParser());
 app.use(bodyParser());
 app.use(session({
     secret:`keyboard cat`,
     resave: false,
-    store: mongooseSeesion
+    saveUninitialized: true ,
+    store: new MongoStroe({
+        //mongooseConnection:mongoose.connection
+        url:MONGODB_URL,
+        collection: "sessions",
+    })
 
 }));
+
 app.use("/", express.static(path.resolve(__dirname, "../public")));
 app.use("/menu-bar/:name", express.static(path.resolve(__dirname, "../public")));
 
@@ -59,7 +65,7 @@ app.post('/joinus', (req, res, next) => {
             gender
             }
     }`
-    request("http://localhost:3000/graphql", query).then( (data) => console.log(data));
+    request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
     res.redirect('/');
 });
 
@@ -82,22 +88,43 @@ app.post('/checked', (req, res, next)=>{
             _userPwd
         }
     }`;
-    const resData = handleLoginRequest("http://localhost:3000/graphql",query);
+    const resData = handleLoginRequest(`http://localhost:${port}/graphql`,query);
     resData.then((result) => {
         if(result.getByIdUser._userID === loginID && result.getByIdUser._userPwd === loginPwd){
+            console.log(`test`);
             req.session.logined = true;
             req.session.userID = loginID;
-            //res.redirect('./login/loginSuccess.html');
+            res.redirect('/');
         }
         else{
             res.redirect('/');
         }
     })
-    res.redirect('/');
+    //res.redirect('/');
 });
 
+app.get("/logout", (req, res, next)=>{
+    req.session.destroy();
+    res.redirect('/');
+})
+
 app.get('/sessionChecked', (req, res, next)=>{
-    console.log(req.session.logined, req.session.userID)
+    console.log(req.session.logined, req.session.userID);
+
+    if(req.session.logined){
+        const jsonSession = {
+            status:{
+                logined: req.session.logined,
+                userId: req.session.userID
+            }
+        }
+        
+        res.setHeader("Content-Type", "text/json")
+        res.json(JSON.stringify(jsonSession));
+    }else
+    {
+        res.redirect('/');
+    }
 })
 
 app.use("/graphql", graphqlHTTP({
@@ -107,5 +134,5 @@ app.use("/graphql", graphqlHTTP({
 
 app.listen(port,()=>{
     console.log(`"Welecom to JKGallery Server!"
-    Plz Connect http:localhost:3000`);
+    Plz Connect http:localhost:${port}`);
 })

@@ -15,8 +15,34 @@ class JKGallery extends Component{
     constructor(props)
     {
         super(props);
+        this.state = {};
+        this._getSessionInfo();
     }
 
+    componentDidMount(){
+        console.log(this.state.logined, this.state.userID);
+    }
+
+    callLoginCallAPI = () =>{
+        return fetch('http://localhost:3000/sessionChecked').then( (res) => {
+            return res.json();
+        }).then((result)=> {
+            const jObj = JSON.parse(result);
+            return jObj;
+        });
+    }
+
+    _getSessionInfo = async () =>{
+        const jObj = await this.callLoginCallAPI();
+        this.setState({
+            logined:jObj.status.logined,
+            userID: jObj.status.userId
+        });
+    }
+    _handleLogoutButton = () =>{
+        console.log("logout!");
+        this.setState({});
+    }
     render()
     {
         return(
@@ -27,11 +53,20 @@ class JKGallery extends Component{
                         <header>
                         <h1>J.K Gallery</h1>
                         </header>
-                        <nav className="_header-nav">
+                        <nav className="_header-nav">                        
                         <HandleMenuBar/>
                         </nav>
                     </div>
-                    <HandleLoginComponent/>
+                    {
+                        this.state.logined?
+                        <div className="login-form">
+                            환영합니다!{this.state.userID}님!
+                            <form action="/logout">
+                                <input type="submit" value="로그아웃" onClick={this._handleLogoutButton}></input>
+                            </form>
+                        </div>                        
+                        :<HandleLoginComponent/>
+                    }
                     <Switch>
                         <Route exact={true} path="/"  component={MyHome}></Route>
                         <Route exact={true} path="/menu-bar/:name"  component={HandleMenu}></Route>

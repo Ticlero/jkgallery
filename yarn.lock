@@ -2374,6 +2374,13 @@ connect-history-api-fallback@^1.6.0:
   resolved "https://registry.yarnpkg.com/connect-history-api-fallback/-/connect-history-api-fallback-1.6.0.tgz#8b32089359308d111115d81cad3fceab888f97bc"
   integrity sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==
 
+connect-mongo@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/connect-mongo/-/connect-mongo-3.0.0.tgz#8d038b024202a0d63d922a5a135adf243ab9f64f"
+  integrity sha512-Y95urWNGrAoKY2w31s7Q9Gs/W3qdMCshUIeDTgulssHi6KueYtz4XrbV3kcnQaR8EcBQvooNNX7aOaAJDgudag==
+  dependencies:
+    mongodb "^3.1.0"
+
 console-browserify@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/console-browserify/-/console-browserify-1.1.0.tgz#f0241c45730a9fc6323b206dbf38edc741d0bb10"
@@ -4553,7 +4560,7 @@ mkdirp@0.5.x, mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mongodb@3.3.2:
+mongodb@3.3.2, mongodb@^3.1.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.2.tgz#ff086b5f552cf07e24ce098694210f3d42d668b2"
   integrity sha512-fqJt3iywelk4yKu/lfwQg163Bjpo5zDKhXiohycvon4iQHbrfflSAz9AIlRE6496Pm/dQKQK5bMigdVo2s6gBg==
