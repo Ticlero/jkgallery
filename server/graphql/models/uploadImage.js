@@ -6,8 +6,10 @@ const userImageSchema = new schema({
         type:String,
         required: true,  
     },
-    uploadDate:{
-        type: Timestamp ,
+    createDate:{
+        timestamps:{
+            createAt: 'create_at'
+        }
     },
     comment:{
         type:String,

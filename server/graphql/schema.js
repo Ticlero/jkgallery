@@ -23,6 +23,20 @@ const typeDefs =`
         age: Int!,
         gender: String!,
     }
+    
+    type Imageinfo{
+        uploadUser: String!
+        createDate: String!
+        comment: String!
+        fieldname: String!
+        originalname: String!
+        encoding: String!
+        mimetype: String!
+        destination: String!
+        filename: String!
+        path: String!
+        size: Int!
+    }
 
     type Mutation{
         addUser(input: userInput): User
