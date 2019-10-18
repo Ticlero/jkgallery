@@ -61,6 +61,10 @@ class JKGallery extends Component{
                         this.state.logined?
                         <div className="login-form">
                             환영합니다!{this.state.userID}님!
+                            <form action="/upload" method="POST" encType="multipart/form-data">
+                                <input type="file" name="user-file" multiple></input>
+                                <input type="submit" value="upload"></input>
+                            </form>
                             <form action="/logout">
                                 <input type="submit" value="로그아웃" onClick={this._handleLogoutButton}></input>
                             </form>

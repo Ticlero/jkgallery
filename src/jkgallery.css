@@ -60,16 +60,14 @@
   
   .login-form .id-box{
     margin: 5px 5px;
-    width: 20%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   .login-form .pwd-box{
     margin: 5px 5px;
-    width: 21%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
 
   .login-form button{

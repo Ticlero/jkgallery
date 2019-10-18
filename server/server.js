@@ -6,6 +6,7 @@ import request from 'graphql-request';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import multer from 'multer';
 
 const MongoStroe = require('connect-mongo')(session);
 const app = express();
@@ -20,7 +21,9 @@ const path = require('path'); //Node.js 환경에서 디렉토리 주소를 다�
 //     console.log(`Express App Start! port:3000
 //     http:localhost:3000`);
 // });
-
+const multerUpload = multer({
+    dest: 'upload_img/',
+})
 mongoose.Promise = global.Promise;// db 연결 (비동기 처리)
 mongoose.connect(MONGODB_URL //useNewUrlParser, useUnifiedTopology 찾아보기
     );
@@ -106,7 +109,7 @@ app.post('/checked', (req, res, next)=>{
 app.get("/logout", (req, res, next)=>{
     req.session.destroy();
     res.redirect('/');
-})
+});
 
 app.get('/sessionChecked', (req, res, next)=>{
     console.log(req.session.logined, req.session.userID);
@@ -125,7 +128,16 @@ app.get('/sessionChecked', (req, res, next)=>{
     {
         res.redirect('/');
     }
-})
+});
+
+app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
+    const files = req.files;
+    console.log(files);
+    files.forEach((data)=>{
+        console.log(data.originalname);
+    })
+    res.redirect('/');
+});
 
 app.use("/graphql", graphqlHTTP({
     schema,
