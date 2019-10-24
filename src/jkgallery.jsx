@@ -42,6 +42,7 @@ class JKGallery extends Component{
     _handleLogoutButton = () =>{
         console.log("logout!");
         this.setState({});
+        console.log(this.state);
     }
     render()
     {

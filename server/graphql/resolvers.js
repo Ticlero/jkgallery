@@ -1,5 +1,5 @@
 import User from './models/user';
-import UserImageFiles from './models/uploadImage';
+import userImageFile from './models/uploadImage';
 
 export const resolvers = {
     Query:{
@@ -13,7 +13,7 @@ export const resolvers = {
             return await User.findOne({_userID:_userID});
         },
         getAllFiles: async () =>{
-            return await UserImageFiles.find();
+            return await userImageFile.find();
         }
     },
 
@@ -22,8 +22,8 @@ export const resolvers = {
             return await User.create(input);
         },
 
-        addUserImageFile: async (_, { imageInfo }) => {
-            return await UserImageFiles.create(imageInfo);
+        addUserImageFile: async (_, { input }) => {
+            return await userImageFile.create(input);
         }
     }
     

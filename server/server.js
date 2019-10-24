@@ -21,8 +21,28 @@ const path = require('path'); //Node.js 환경에서 디렉토리 주소를 다�
 //     console.log(`Express App Start! port:3000
 //     http:localhost:3000`);
 // });
+const storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, 'upload_img/')
+    },
+
+    filename: function(req, file, cb){
+        const stamp = new Date().valueOf();
+        cb(null, `${stamp}.${file.originalname.split('.')[file.originalname.split('.').length-1]}`)
+    }
+})
+
 const multerUpload = multer({
-    dest: 'upload_img/',
+    storage,
+    fileFilter: (req, file, cb)=>{
+        const ext = path.extname(file.originalname);
+        console.log(ext);
+        if(ext !== '.PNG' && ext !== '.JPG' && ext !== '.GIF' && ext !== '.JPEG'){
+            return cb(new Error("Only Images are allowed"))
+        }
+        cb(null, true);
+    },
+    //dest: 'upload_img/',
 })
 mongoose.Promise = global.Promise;// db 연결 (비동기 처리)
 mongoose.connect(MONGODB_URL //useNewUrlParser, useUnifiedTopology 찾아보기
@@ -131,12 +151,32 @@ app.get('/sessionChecked', (req, res, next)=>{
 });
 
 app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
-    const files = req.files;
-    console.log(files);
-    files.forEach((data)=>{
-        console.log(data.originalname);
-    })
+    const sessionCheck = req.session.logined? true : false;
+    if(sessionCheck){
+        const files = req.files;
+        console.log(files);
+        const path = files[0].path.replace("\\", "/");
+        //console.log(files[0].path, pattern);
+        //console.log(files[0].destination);
+        const query = `mutation{
+        addUserImageFile(input:{
+            uploadUser:"${req.session.userID}"
+            originalname: "${files[0].originalname}"
+            encoding: "${files[0].encoding}"
+            mimetype:"${files[0].mimetype}"
+            destination: "${files[0].destination}"
+            filename: "${files[0].filename}"
+            path: "${path}"
+            size: ${parseInt(files[0].size)}
+        }){
+            uploadUser
+        }
+    }`
+    request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
     res.redirect('/');
+    }else{
+        res.redirect('/');
+    }
 });
 
 app.use("/graphql", graphqlHTTP({

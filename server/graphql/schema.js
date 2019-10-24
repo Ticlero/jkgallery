@@ -6,9 +6,11 @@ const typeDefs =`
         hello: String!,
         allUser: [User],
         getByIdUser(_userID: String!): User,
+        getAllFiles: [Imageinfo]
     }
 
     type User{
+        _id: ID,
         _userID: String!,
         _userPwd: String!,
         name: String!,
@@ -25,21 +27,30 @@ const typeDefs =`
     }
     
     type Imageinfo{
-        uploadUser: String!
-        createDate: String!
-        comment: String!
-        fieldname: String!
-        originalname: String!
-        encoding: String!
-        mimetype: String!
-        destination: String!
-        filename: String!
-        path: String!
+        uploadUser: String!,
+        originalname: String!,
+        encoding: String!,
+        mimetype: String!,
+        destination: String!,
+        filename: String!,
+        path: String!,
+        size: Int!
+    }
+
+    input imageFileInput{
+        uploadUser: String!,
+        originalname: String!,
+        encoding: String!,
+        mimetype: String!,
+        destination: String!,
+        filename: String!,
+        path: String!,
         size: Int!
     }
 
     type Mutation{
-        addUser(input: userInput): User
+        addUser(input: userInput): User,
+        addUserImageFile(input: imageFileInput): Imageinfo
     }
 `
 

@@ -6,46 +6,27 @@ const userImageSchema = new schema({
         type:String,
         required: true,  
     },
-    createDate:{
-        timestamps:{
-            createAt: 'create_at'
-        }
-    },
-    comment:{
-        type:String,
-    },
-    fieldname:{
-        type:String,
-        required: true,  
-    },
     originalname:{
-        type:String,
-        required: true,  
+        type: String,
     },
     encoding:{
-        type:String,
-        required: true,  
-    },
+        type: String,
+    } ,
     mimetype:{
-        type:String,
-        required: true,  
-    },
+        type: String,
+    } ,
     destination:{
-        type:String,
-        required: true,  
-    },
+        type: String,
+    } ,
     filename:{
-        type:String,
-        required: true,  
+        type: String,
     },
     path:{
-        type:String,
-        required: true,  
+        type: String,
     },
-    size:{
-        type: Number,
-        required: true,
-    },
-})
+    size: {
+        type: Number
+    }
+});
 
-export default mongoose.model("userImageFiles", userImageSchema);
+export default mongoose.model("userImageFile", userImageSchema);
