@@ -4,6 +4,7 @@ import AboutUs from './m_AboutUs.jsx';
 import ReadMe from './m_ReadMe.jsx';
 import MyImage from './myimage.jsx';
 import UserInfo from './m_UserInfo.jsx'
+import LoadImg from './m_HandleUserImageFile';
 
 
 class HandleMenu extends Component {
@@ -13,15 +14,17 @@ class HandleMenu extends Component {
         console.log(menuType);
         switch(menuType){
             case "MyHome" || "/":
-                return <MyHome props={this.props}/>
+                return <MyHome props={this.props}></MyHome>
             case "AboutUs":
-                return <AboutUs props={this.props}/>
+                return <AboutUs props={this.props}></AboutUs>
             case "ReadMe":
-                return <ReadMe props={this.props}/>
+                return <ReadMe props={this.props}></ReadMe>
             case "MyImage":
-                return <MyImage props={this.props}/>
+                return <MyImage props={this.props}></MyImage>
             case "UserInfo":
-                return <UserInfo props={this.props}/>
+                return <UserInfo props={this.props}></UserInfo>
+            case "LoadImg":
+                return <LoadImg props={this.props}></LoadImg>
             default:
                 return <div>요청하신 정보가 없습니다.</div>
         }

@@ -11,6 +11,7 @@ class HandleMenuBar extends Component {
               <li><Link to="/menu-bar/AboutUs"><button>About us</button></Link></li>
               <li><Link to="/menu-bar/ReadMe"><button>ReadMe</button></Link></li>
               <li><Link to="/menu-bar/UserInfo"><button>UserInfo</button></Link></li>
+              <li><Link to="/menu-bar/LoadImg"><button>LoadImg</button></Link></li>
             </ul>
         );
     }

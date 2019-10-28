@@ -11,3 +11,14 @@ export const USER_INFO_Q = gql`
         }
     }
 `;
+
+export const LOAD_IMG_FILE_LIST = gql`
+    query{
+        getAllFiles{
+            uploadUser
+            originalname
+            destination
+            filename
+        }
+    }
+`;

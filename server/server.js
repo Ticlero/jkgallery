@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import multer from 'multer';
+import fs from 'fs';
+import url from 'url';
 
 const MongoStroe = require('connect-mongo')(session);
 const app = express();
@@ -178,6 +180,13 @@ app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
         res.redirect('/');
     }
 });
+
+app.get("/filelist", (req, res, next)=>{
+    const fileList = fs.readdirSync("./upload_img");
+    console.log(url.parse(req.url, true).query);
+    console.log(__dirname);
+    res.send(fileList);
+})
 
 app.use("/graphql", graphqlHTTP({
     schema,
