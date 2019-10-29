@@ -15,7 +15,7 @@ const HandleUserImageFile = () => {
 const mappingFileInfo = (data) =>{
     console.log(data);
     const files = data.getAllFiles.map((file) =>{
-        return <FileInfoFrom uploadUser={file.uploadUser} originalname={file.originalname} destination={file.destination} filename={file.filename} key={file._id}/>
+        return <FileInfoFrom uploadUser={file.uploadUser} originalname={file.originalname} destination={file.destination} filename={file.filename}/>
     })
     return files;
 }

@@ -21,9 +21,6 @@ const userImageSchema = new schema({
     filename:{
         type: String,
     },
-    path:{
-        type: String,
-    },
     size: {
         type: Number
     }

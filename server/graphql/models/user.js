@@ -3,6 +3,9 @@ import mongoose from 'mongoose';
 mongoose.set('useCreateIndex', true);//DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead. 오류 제거
 const schema = mongoose.Schema;
 const userSchema = new schema({
+    _id:{
+        type:String,
+    },
     _userID:{
         type: String,
         required: true,

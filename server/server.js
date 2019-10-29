@@ -25,7 +25,7 @@ const path = require('path'); //Node.js 환경에서 디렉토리 주소를 다�
 // });
 const storage = multer.diskStorage({
     destination: function(req, file, cb){
-        cb(null, 'upload_img/')
+        cb(null, 'public/upload_img/')
     },
 
     filename: function(req, file, cb){
@@ -37,9 +37,11 @@ const storage = multer.diskStorage({
 const multerUpload = multer({
     storage,
     fileFilter: (req, file, cb)=>{
+        const regular =  new RegExp(`\\.(png|jpe?g|gif)$`,`ig`);
         const ext = path.extname(file.originalname);
+        const patternChecked = regular.test(ext);
         console.log(ext);
-        if(ext !== '.PNG' && ext !== '.JPG' && ext !== '.GIF' && ext !== '.JPEG'){
+        if(patternChecked !== true){
             return cb(new Error("Only Images are allowed"))
         }
         cb(null, true);
@@ -168,14 +170,13 @@ app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
             mimetype:"${files[0].mimetype}"
             destination: "${files[0].destination}"
             filename: "${files[0].filename}"
-            path: "${path}"
             size: ${parseInt(files[0].size)}
         }){
             uploadUser
         }
     }`
     request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
-    res.redirect('/');
+    res.redirect('/menu-bar/LoadImg');
     }else{
         res.redirect('/');
     }

@@ -10,7 +10,7 @@ const typeDefs =`
     }
 
     type User{
-        _id: ID,
+        _id: ID!,
         _userID: String!,
         _userPwd: String!,
         name: String!,
@@ -27,13 +27,13 @@ const typeDefs =`
     }
     
     type Imageinfo{
+        _id: ID!,
         uploadUser: String!,
         originalname: String!,
         encoding: String!,
         mimetype: String!,
         destination: String!,
         filename: String!,
-        path: String!,
         size: Int!
     }
 
@@ -44,7 +44,6 @@ const typeDefs =`
         mimetype: String!,
         destination: String!,
         filename: String!,
-        path: String!,
         size: Int!
     }
 
