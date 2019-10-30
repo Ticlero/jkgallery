@@ -27,7 +27,9 @@ const typeDefs =`
     }
     
     type Imageinfo{
-        _id: ID!,
+        _id: String!,
+        contentsTitle: String!
+        contentsStory: String!
         uploadUser: String!,
         originalname: String!,
         encoding: String!,
@@ -38,6 +40,8 @@ const typeDefs =`
     }
 
     input imageFileInput{
+        contentsTitle: String!,
+        contentsStory: String!,
         uploadUser: String!,
         originalname: String!,
         encoding: String!,

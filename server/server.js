@@ -66,9 +66,20 @@ app.use(session({
 
 }));
 
+app.get("/write/paper", (req, res, next)=>{
+    const sessionCheck = req.session.logined? true : false;
+    if(!sessionCheck)
+    {
+        res.redirect("/");
+    }
+    else{
+        next();
+    }
+})
+
 app.use("/", express.static(path.resolve(__dirname, "../public")));
 app.use("/menu-bar/:name", express.static(path.resolve(__dirname, "../public")));
-
+app.use("/write/paper", express.static(path.resolve(__dirname, "../public")));
 
 app.post('/joinus', (req, res, next) => {
     const m_id = req.param(`m-id`);
@@ -154,7 +165,7 @@ app.get('/sessionChecked', (req, res, next)=>{
     }
 });
 
-app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
+app.post("/upload", multerUpload.array('contents-user-file') ,(req, res, next)=>{
     const sessionCheck = req.session.logined? true : false;
     if(sessionCheck){
         const files = req.files;
@@ -164,6 +175,8 @@ app.post("/upload", multerUpload.array('user-file') ,(req, res, next)=>{
         //console.log(files[0].destination);
         const query = `mutation{
         addUserImageFile(input:{
+            contentsTitle:"${req.param(`contents-title`)}"
+            contentsStory:"${req.param(`contents-story`)}"
             uploadUser:"${req.session.userID}"
             originalname: "${files[0].originalname}"
             encoding: "${files[0].encoding}"

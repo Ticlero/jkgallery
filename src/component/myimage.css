@@ -3,12 +3,29 @@
 }
 
 ._myimage{
+    padding: 30px;
     margin: 5% 2%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
     overflow: auto;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.load-files-frame{
+    padding: 30px;
+    margin: 5% 2%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: auto;
+    box-shadow:0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    background-color: #fff;
+    border-radius: 20px;
 }
 
 .single-image-frame{
@@ -20,6 +37,30 @@
     border-radius: 10px;
 }
 
-.single-image-frame .single-image{
+.single-image{
     float: left;
+}
+
+.write-paper-frame{
+    height: 100%;
+}
+.write-paper-frame form{
+    height: 50%;
+}
+.write-paper-frame table{
+    all:unset;
+}
+.write-paper-frame table .contents-input{
+    width: 90%;
+}
+.write-paper-frame .contents-title-stroy-input{
+    width:100%;
+}
+.write-paper-frame .submit-btn{
+    float: right;
+}
+
+textarea[name="contents-story"]
+{
+    resize: none;
 }

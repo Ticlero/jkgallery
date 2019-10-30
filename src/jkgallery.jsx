@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import {ApolloProvider} from '@apollo/react-hooks';
+import JKApolloClient from './client/jkApolloClient';
+
 import HandleMenuBar from './component/m_HandleMenuBar';
 import HandleMenu from './component/m_HandleMenu';
 import MyHome from './component/m_MyHome';
 import LoginRegister from './component/l_loginRegister.jsx';
 import HandleLoginComponent from './component/m_HandleLoginComponent';
+import WritePaper from './component/writePaper';
 import './jkgallery.css';
+import HandleLoginedForm from './component/handleLoginedForm';
 
-import {ApolloProvider} from '@apollo/react-hooks';
-import JKApolloClient from './client/jkApolloClient';
 
 class JKGallery extends Component{
     
@@ -60,22 +65,14 @@ class JKGallery extends Component{
                     </div>
                     {
                         this.state.logined?
-                        <div className="login-form">
-                            환영합니다!{this.state.userID}님!
-                            <form action="/upload" method="POST" encType="multipart/form-data">
-                                <input type="file" name="user-file" multiple></input>
-                                <input type="submit" value="upload"></input>
-                            </form>
-                            <form action="/logout">
-                                <input type="submit" value="로그아웃" onClick={this._handleLogoutButton}></input>
-                            </form>
-                        </div>                        
+                        <HandleLoginedForm userid={this.state.userID} _handleLogoutButton={this._handleLogoutButton}/>                   
                         :<HandleLoginComponent/>
                     }
                     <Switch>
                         <Route exact={true} path="/"  component={MyHome}></Route>
                         <Route exact={true} path="/menu-bar/:name"  component={HandleMenu}></Route>
                         <Route exact={true} path="/login/Register"  component={LoginRegister}></Route>
+                        <Route exact={true} path="/write/paper" component={WritePaper}></Route>
                     </Switch>
                 </div>
             </BrowserRouter>

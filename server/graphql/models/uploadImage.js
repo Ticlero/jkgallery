@@ -2,6 +2,14 @@ import mongoose from 'mongoose';
 
 const schema = mongoose.Schema;
 const userImageSchema = new schema({
+    contentsTitle:{
+        type:String,
+        default:"제목 없음",
+    },
+    contentsStory:{
+        type:String,
+        default:"내용 없음",
+    },
     uploadUser:{
         type:String,
         required: true,  
