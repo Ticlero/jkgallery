@@ -3,6 +3,7 @@ import './m_MyHome.css';
 import AboutUs from './m_AboutUs.jsx';
 import ReadMe from './m_ReadMe.jsx';
 import MyImage from './myimage.jsx'
+import LoadImg from './m_HandleUserImageFile';
 
 function MyHome(props){
     console.log(props)
@@ -15,7 +16,7 @@ function MyHome(props){
                 <ReadMe/>
             </div>
             <div className="h-my-image">
-                <MyImage/>
+                <LoadImg/>
             </div>
         </div>
     )

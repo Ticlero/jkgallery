@@ -64,3 +64,84 @@ textarea[name="contents-story"]
 {
     resize: none;
 }
+.load-files-frame .single-image-frame{
+    display: flex;
+    justify-content: left;
+}
+.load-files-frame .single-image-frame .image-contents textarea{
+    width: 50%;
+    height: 100%;
+    background-color: #fff;
+    border: none;
+    resize: none;
+}
+
+.load-files-frame .single-image{
+    font-size: 12px;
+    color: gray;
+    padding: 5px 5px;
+}
+
+.load-files-frame .single-image img{
+    border-radius: 10%;
+}
+
+.load-files-frame .image-contents{
+    padding: 5px 5px;
+}
+
+.load-files-frame .loaded-images{
+    cursor:pointer;
+}
+
+/*modal css*/
+.body-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.modal-contents{
+    z-index: 100;
+}
+
+.modal-overlay{
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100%;
+    position:absolute;
+}
+.hidden
+{
+    display:none;
+}
+.modal-contents-close{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contents-img-info{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-contents-img-info-img{
+    width: 50%;
+    height: 50%;
+}
+
+#modal-contents-close-btn{
+    all:unset;
+    background-color: steelblue;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}

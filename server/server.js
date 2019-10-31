@@ -176,7 +176,7 @@ app.post("/upload", multerUpload.array('contents-user-file') ,(req, res, next)=>
         const query = `mutation{
         addUserImageFile(input:{
             contentsTitle:"${req.param(`contents-title`)}"
-            contentsStory:"${req.param(`contents-story`)}"
+            contentsStory:${JSON.stringify(req.param(`contents-story`))}
             uploadUser:"${req.session.userID}"
             originalname: "${files[0].originalname}"
             encoding: "${files[0].encoding}"
