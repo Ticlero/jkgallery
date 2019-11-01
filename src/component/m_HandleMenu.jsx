@@ -19,12 +19,12 @@ class HandleMenu extends Component {
                 return <AboutUs props={this.props}></AboutUs>
             case "ReadMe":
                 return <ReadMe props={this.props}></ReadMe>
-            case "MyImage":
-                return <MyImage props={this.props}></MyImage>
+            // case "MyImage":
+            //     return <MyImage props={this.props}></MyImage>
             // case "UserInfo":
             //     return <UserInfo props={this.props}></UserInfo>
-            // case "LoadImg":
-            //     return <LoadImg props={this.props}></LoadImg>
+            case "LoadImg":
+                return <LoadImg props={this.props}></LoadImg>
             default:
                 return <div>요청하신 정보가 없습니다.</div>
         }
