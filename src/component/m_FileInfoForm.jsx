@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 const imageModal = document.querySelector("#image-modal");
 const imageModalContents = imageModal.querySelector(".modal-contents");
-const imageModalContentsClose = imageModalContents.querySelector(".modal-contents-close");
-const imageModalImgInfo = imageModalContents.querySelector(".modal-contents-img-info");
+const imageModalImgInfoFrame = imageModalContents.querySelector(".modal-contents-img-info-frame");
+const imageModalContentsClose = imageModalImgInfoFrame.querySelector(".modal-contents-close");
+const imageModalImgInfo = imageModalImgInfoFrame.querySelector(".modal-contents-img-info");
 
 const imageModalTitle = imageModalContentsClose.querySelector("#modal-contents-title");
 const imageModalContentsCloseBtn = imageModalContentsClose.querySelector("#modal-contents-close-btn");
@@ -34,15 +35,27 @@ class fileInfoFrom extends Component
 
     openImageModal = (event) =>{
         const targetEle = document.getElementById(this.state.filename.split('.')[0]);
+        const storyArr = this.state.contentsStory.split('\n');
+        let story = "";
+
+        imageModal.classList.remove("hidden");
         imageModalTitle.innerHTML = this.state.contentsTitle;
         imageModalImgInfoImg.setAttribute("src",targetEle.currentSrc);
+        
+        for(let i = 0; i<storyArr.length; i++ ){
+            if(i===storyArr.length)
+                stroy += `<span>${storyArr[i]}</span>`;
+
+                story += `<span>${storyArr[i]}</span><br>`;    
+        }
+        imageModalImgInfoStory.innerHTML = story;
         imageModalContentsCloseBtn.addEventListener("click", this.closeImageModal);
         console.log(targetEle);
         console.dir(targetEle);
         // console.log(targetEle.currentSrc);
         // console.log(imageModalTitle.innerHTML, imageModalContentsCloseBtn.innerHTML, imageModalImgInfoImg,
         //     imageModalImgInfoStory.innerHTML);
-        imageModal.classList.remove("hidden");
+        
     }
 
     closeImageModal = (event) =>{
