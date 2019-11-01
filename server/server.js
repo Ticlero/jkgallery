@@ -170,25 +170,26 @@ app.post("/upload", multerUpload.array('contents-user-file') ,(req, res, next)=>
     if(sessionCheck){
         const files = req.files;
         console.log(files);
-        const path = files[0].path.replace("\\", "/");
-        //console.log(files[0].path, pattern);
-        //console.log(files[0].destination);
-        const query = `mutation{
-        addUserImageFile(input:{
-            contentsTitle:"${req.param(`contents-title`)}"
-            contentsStory:${JSON.stringify(req.param(`contents-story`))}
-            uploadUser:"${req.session.userID}"
-            originalname: "${files[0].originalname}"
-            encoding: "${files[0].encoding}"
-            mimetype:"${files[0].mimetype}"
-            destination: "${files[0].destination}"
-            filename: "${files[0].filename}"
-            size: ${parseInt(files[0].size)}
-        }){
-            uploadUser
-        }
-    }`
-    request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+        
+        files.forEach((file)=>{
+            const query = `mutation{
+                addUserImageFile(input:{
+                    contentsTitle:"${req.param(`contents-title`)}"
+                    contentsStory:${JSON.stringify(req.param(`contents-story`))}
+                    uploadUser:"${req.session.userID}"
+                    originalname: "${file.originalname}"
+                    encoding: "${file.encoding}"
+                    mimetype:"${file.mimetype}"
+                    destination: "${file.destination}"
+                    filename: "${file.filename}"
+                    size: ${parseInt(file.size)}
+                }){
+                    uploadUser
+                }
+            }`
+            request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+        })
+        
     res.redirect('/menu-bar/LoadImg');
     }else{
         res.redirect('/');

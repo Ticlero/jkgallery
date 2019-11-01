@@ -7,13 +7,13 @@ const HandleUserImageFile = () => {
     const { loading, error, data} = useQuery(LOAD_IMG_FILE_LIST);
     if(loading) return <p>Loading...</p>
     if(error) return <p>Error!!</p>
+    console.log(data);
     return (
         <div className="load-files-frame">{mappingFileInfo(data)}</div>
     );
 };
 
 const mappingFileInfo = (data) =>{
-    console.log(data);
     const files = data.getAllFiles.map((file) =>{
         return <FileInfoFrom 
         uploadUser={file.uploadUser} 

@@ -18,10 +18,9 @@ class fileInfoFrom extends Component
 
     constructor(props){
         super(props);
-        console.log(`this.props:`, props);
         const {uploadUser, originalname, destination, filename, contentsTitle, contentsStory} = props;
 
-        console.log(uploadUser, originalname, destination, filename, contentsTitle, contentsStory);
+        //console.log(uploadUser, originalname, destination, filename, contentsTitle, contentsStory);
         this.state={
             uploadUser: uploadUser, 
             originalname: originalname, 
@@ -30,7 +29,7 @@ class fileInfoFrom extends Component
             contentsTitle: contentsTitle, 
             contentsStory: contentsStory
         };
-        console.log("this.state",this.state);
+        //console.log("this.state",this.state);
     }
 
     openImageModal = (event) =>{
@@ -50,12 +49,6 @@ class fileInfoFrom extends Component
         }
         imageModalImgInfoStory.innerHTML = story;
         imageModalContentsCloseBtn.addEventListener("click", this.closeImageModal);
-        console.log(targetEle);
-        console.dir(targetEle);
-        // console.log(targetEle.currentSrc);
-        // console.log(imageModalTitle.innerHTML, imageModalContentsCloseBtn.innerHTML, imageModalImgInfoImg,
-        //     imageModalImgInfoStory.innerHTML);
-        
     }
 
     closeImageModal = (event) =>{
