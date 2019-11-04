@@ -13,6 +13,7 @@ import url from 'url';
 const MongoStroe = require('connect-mongo')(session);
 const app = express();
 const port = 3000;
+const SERVICE_URI = "http://45.119.146.249:3000"
 const dbName = 'userinfoTable';
 const MONGODB_URL = `mongodb+srv://admin:wkdqkdrn8172!@cluster0-9oxri.mongodb.net/${dbName}?retryWrites=true&w=majority` //mogodb cloud connect
 //const express = require("express"); //express 모듈 사용 - 객체 얻기
@@ -103,7 +104,8 @@ app.post('/joinus', (req, res, next) => {
             gender
             }
     }`
-    request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+    //request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+    request(`${SERVICE_URI}/graphql`,query).then( (data)=> console.log(data));
     res.redirect('/');
 });
 
@@ -126,7 +128,8 @@ app.post('/checked', (req, res, next)=>{
             _userPwd
         }
     }`;
-    const resData = handleLoginRequest(`http://localhost:${port}/graphql`,query);
+    //const resData = handleLoginRequest(`http://localhost:${port}/graphql`,query);
+    const resData = handleLoginRequest(`${SERVICE_URI}/graphql`,query);
     resData.then((result) => {
         if(result.getByIdUser._userID === loginID && result.getByIdUser._userPwd === loginPwd){
             console.log(`test`);
@@ -187,7 +190,8 @@ app.post("/upload", multerUpload.array('contents-user-file') ,(req, res, next)=>
                     uploadUser
                 }
             }`
-            request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+            //request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+            request(`${SERVICE_URI}/graphql`,query).then((data)=>console.log(data));
         })
         
     res.redirect('/menu-bar/LoadImg');
@@ -209,6 +213,7 @@ app.use("/graphql", graphqlHTTP({
 }));
 
 app.listen(port,()=>{
-    console.log(`"Welecom to JKGallery Server!"
-    Plz Connect http:localhost:${port}`);
+    // console.log(`"Welecom to JKGallery Server!"
+    // Plz Connect http:localhost:${port}`);
+    console.log(`Plz connet ${SERVICE_URI}`);
 })
