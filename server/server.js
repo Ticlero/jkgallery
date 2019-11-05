@@ -12,8 +12,8 @@ import url from 'url';
 
 const MongoStroe = require('connect-mongo')(session);
 const app = express();
-const port = 3000;
-const SERVICE_URI = "http://45.119.146.249:3000"
+const port = 80;
+const SERVICE_URI = "http://www.jkgallery.kr:80"
 const dbName = 'userinfoTable';
 const MONGODB_URL = `mongodb+srv://admin:wkdqkdrn8172!@cluster0-9oxri.mongodb.net/${dbName}?retryWrites=true&w=majority` //mogodb cloud connect
 //const express = require("express"); //express 모듈 사용 - 객체 얻기

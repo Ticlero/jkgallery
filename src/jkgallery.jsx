@@ -29,7 +29,7 @@ class JKGallery extends Component{
     }
 
     callLoginCallAPI = () =>{
-        return fetch(`http://45.119.146.249:3000/sessionChecked`).then( (res) => {
+        return fetch(`http://www.jkgallery.kr:80/sessionChecked`).then( (res) => {
             return res.json();
         }).then((result)=> {
             const jObj = JSON.parse(result);
