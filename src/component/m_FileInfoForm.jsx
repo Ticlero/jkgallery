@@ -68,8 +68,6 @@ class fileInfoFrom extends Component
                         src={`${window.location.origin}/${virtualPath[1]}/${this.state.filename}`}
                         id={key[0]}
                         alt={this.state.originalname}
-                        width="200" 
-                        height="133" 
                         data-uploader={this.state.uploadUser} 
                         data-originalname={this.state.originalname}
                         className="loaded-images"

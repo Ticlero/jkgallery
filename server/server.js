@@ -88,25 +88,31 @@ app.post('/joinus', (req, res, next) => {
     const m_name = req.param('m-name');
     const m_age = req.param('m-age');
     const m_gender = req.param('m-gender');
-    console.log(m_id, m_pwd, m_name, m_age, m_gender);
-    const query = `mutation{
-        addUser(input:{
-            _userID: "${m_id}"
-            _userPwd: "${m_pwd}"
-            name: "${m_name}"
-            age: ${parseInt(m_age)}
-            gender: "${m_gender}"
-            }){
-            _userID
-            _userPwd
-            name
-            age
-            gender
-            }
-    }`
-    //request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
-    request(`${SERVICE_URI}/graphql`,query).then( (data)=> console.log(data));
-    res.redirect('/');
+    if(m_id !== ""  && m_pwd !=="" && m_name !=="" && m_age < 1 && m_gender !== ""){
+        console.log(m_id, m_pwd, m_name, m_age, m_gender);
+        const query = `mutation{
+            addUser(input:{
+                _userID: "${m_id}"
+                _userPwd: "${m_pwd}"
+                name: "${m_name}"
+                age: ${parseInt(m_age)}
+                gender: "${m_gender}"
+                }){
+                _userID
+                _userPwd
+                name
+                age
+                gender
+                }
+        }`
+        //request(`http://localhost:${port}/graphql`, query).then( (data) => console.log(data));
+        request(`${SERVICE_URI}/graphql`,query).then( (data)=> console.log(data));
+        res.redirect('/');
+    }else
+    {
+        res.send("/");
+    }
+    
 });
 
 const handleLoginRequest = (URI, query) =>{
