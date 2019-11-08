@@ -5,6 +5,7 @@ import ReadMe from './m_ReadMe.jsx';
 import MyImage from './myimage.jsx';
 import UserInfo from './m_UserInfo.jsx'
 import LoadImg from './m_HandleUserImageFile';
+import HandleCaleandar from './handleCaleandar';
 
 
 class HandleMenu extends Component {
@@ -25,6 +26,8 @@ class HandleMenu extends Component {
             //     return <UserInfo props={this.props}></UserInfo>
             case "LoadImg":
                 return <LoadImg props={this.props}></LoadImg>
+            case "Caleandar":
+                return <HandleCaleandar props={this.props}></HandleCaleandar>
             default:
                 return <div>요청하신 정보가 없습니다.</div>
         }

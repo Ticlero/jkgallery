@@ -19,7 +19,7 @@ module.exports = {
     entry:
     {
         app: [ './src/index.jsx', './src/jkgallery.jsx', './src/component/m_AboutUs.jsx', './src/component/m_MyHome.jsx', './src/component/m_ReadMe.jsx', 
-        './src/component/m_HandleMenu.jsx', './src/component/m_HandleMenuBar.jsx']
+        './src/component/m_HandleMenu.jsx', './src/component/m_HandleMenuBar.jsx', './public/caleandar/css/theme3.css']
     
     }, //입력
     
